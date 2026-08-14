@@ -1,1 +1,382 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caps Converter - Convert Text to Uppercase, Lowercase & More</title>
+  <meta name="description" content="Convert text instantly with our free Caps Converter. Change text to uppercase, lowercase, title case, sentence case, and more.">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    body {
+      background-color: #f8fafc;
+      color: #0f172a;
+      line-height: 1.65;
+      padding: 20px 12px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    h1 {
+      color: #1e3a8a;
+      font-size: 2.6rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle {
+      color: #475569;
+      font-size: 1.15rem;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .tool-box {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      margin-bottom: 3.5rem;
+    }
+    .row-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .row-header h2, .row-header h3 {
+      font-size: 1.1rem;
+      color: #1e3a8a;
+      font-weight: 700;
+    }
+    .counts {
+      font-size: 0.9rem;
+      color: #64748b;
+      font-weight: 500;
+    }
+    textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 1rem;
+      line-height: 1.5;
+      outline: none;
+      resize: vertical;
+      margin-bottom: 1rem;
+      transition: border-color 0.2s ease;
+    }
+    textarea:focus {
+      border-color: #1e3a8a;
+    }
+    .button-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .btn-action {
+      background: #1e3a8a;
+      color: #ffffff;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    .btn-action:hover {
+      background: #172554;
+    }
+    .divider {
+      border-top: 1px solid #e2e8f0;
+      padding-top: 1.25rem;
+    }
+    .btn-copy {
+      background: #d97706;
+      color: #ffffff;
+      border: none;
+      padding: 0.45rem 0.9rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .btn-copy:hover {
+      background: #b45309;
+    }
+    .btn-secondary {
+      background: #f1f5f9;
+      color: #1e3a8a;
+      border: 1px solid #cbd5e1;
+      padding: 0.45rem 0.9rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .btn-clear {
+      background: #fee2e2;
+      color: #dc2626;
+      border: 1px solid #fecaca;
+      padding: 0.45rem 0.9rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .section-title {
+      color: #1e3a8a;
+      font-size: 1.8rem;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-bottom: 3.5rem;
+    }
+    .card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1.25rem;
+    }
+    .card h3 {
+      color: #1e3a8a;
+      font-size: 1.15rem;
+      margin-bottom: 0.4rem;
+    }
+    .code-pill {
+      background: #f8fafc;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      color: #1e3a8a;
+      font-family: monospace;
+      margin-top: 0.5rem;
+    }
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 3.5rem;
+    }
+    .faq-item {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1.25rem;
+    }
+    .faq-item h3 {
+      color: #1e3a8a;
+      font-size: 1.1rem;
+      margin-bottom: 0.35rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+      border-top: 1px solid #e2e8f0;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Hero Header -->
+    <header>
+      <h1>Caps Converter</h1>
+      <p class="subtitle">Convert text instantly between uppercase, lowercase, title case, sentence case, and more with our free online tool.</p>
+    </header>
+
+    <!-- Interactive Working Converter Tool -->
+    <section class="tool-box">
+      <div class="row-header">
+        <h2>Input Text</h2>
+        <div class="counts">
+          <span id="word-count">Words: 0</span> &nbsp;|&nbsp; 
+          <span id="char-count">Characters: 0</span>
+        </div>
+      </div>
+
+      <textarea id="main-input" rows="6" placeholder="Type or paste your text here..." oninput="updateCounts()"></textarea>
+
+      <div class="button-grid">
+        <button type="button" class="btn-action" onclick="convertTo('upper')">UPPERCASE</button>
+        <button type="button" class="btn-action" onclick="convertTo('lower')">lowercase</button>
+        <button type="button" class="btn-action" onclick="convertTo('title')">Title Case</button>
+        <button type="button" class="btn-action" onclick="convertTo('sentence')">Sentence case</button>
+        <button type="button" class="btn-action" onclick="convertTo('alternating')">aLtErNaTiNg</button>
+        <button type="button" class="btn-action" onclick="convertTo('inverse')">iNVERSE cASE</button>
+      </div>
+
+      <div class="divider">
+        <div class="row-header">
+          <h3>Converted Output</h3>
+          <div style="display: flex; gap: 0.5rem;">
+            <button type="button" id="copy-btn" class="btn-copy" onclick="copyOutput()">Copy Text</button>
+            <button type="button" class="btn-secondary" onclick="downloadTxt()">Download .txt</button>
+            <button type="button" class="btn-clear" onclick="clearAll()">Clear</button>
+          </div>
+        </div>
+        <textarea id="main-output" rows="6" readonly placeholder="Your converted text appears here..." style="background: #f8fafc;"></textarea>
+      </div>
+    </section>
+
+    <!-- Informational Content -->
+    <section style="margin-bottom: 3.5rem;">
+      <h2 class="section-title">What Is a Caps Converter?</h2>
+      <p style="color: #334155; line-height: 1.7;">
+        A <strong>Caps Converter</strong> (or text case converter) is an online utility that transforms the capitalization of your written content without requiring manual retyping. Whether you accidentally left the <em>Caps Lock</em> key on, need to format blog post titles into clean headline capitalization, or want uniform lowercase strings for code, text converters process full paragraphs in milliseconds.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="section-title">Supported Text Case Formats</h2>
+      <div class="cards-grid">
+        <div class="card">
+          <h3>1. UPPERCASE</h3>
+          <p style="font-size: 0.95rem; color: #475569;">Converts all alphabetical letters into standard capital letters.</p>
+          <div class="code-pill">example text → EXAMPLE TEXT</div>
+        </div>
+        <div class="card">
+          <h3>2. lowercase</h3>
+          <p style="font-size: 0.95rem; color: #475569;">Transforms all characters into small letters, removing accidental capitalization.</p>
+          <div class="code-pill">EXAMPLE TEXT → example text</div>
+        </div>
+        <div class="card">
+          <h3>3. Title Case</h3>
+          <p style="font-size: 0.95rem; color: #475569;">Capitalizes the first letter of each word, optimal for headlines and titles.</p>
+          <div class="code-pill">this is a title → This Is A Title</div>
+        </div>
+        <div class="card">
+          <h3>4. Sentence Case</h3>
+          <p style="font-size: 0.95rem; color: #475569;">Capitalizes the first letter of each sentence following periods, question marks, or exclamation points.</p>
+          <div class="code-pill">hello world. it works. → Hello world. It works.</div>
+        </div>
+        <div class="card">
+          <h3>5. aLtErNaTiNg cAsE</h3>
+          <p style="font-size: 0.95rem; color: #475569;">Alternates between lowercase and uppercase letters across strings.</p>
+          <div class="code-pill">hello world → hElLo wOrLd</div>
+        </div>
+        <div class="card">
+          <h3>6. iNVERSE cASE</h3>
+          <p style="font-size: 0.95rem; color: #475569;">Flips each character: uppercase becomes lowercase, and lowercase becomes uppercase.</p>
+          <div class="code-pill">Caps CONVERTER → cAPS converter</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQs -->
+    <section>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <h3>What is a caps converter?</h3>
+          <p style="color: #475569; font-size: 0.95rem;">A caps converter is a browser-based utility that alters letter case styles across strings and documents without manual retyping.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Is this caps converter free to use?</h3>
+          <p style="color: #475569; font-size: 0.95rem;">Yes, this tool is 100% free with no sign-ups, installation, or character usage limits.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Does the tool save or store my text?</h3>
+          <p style="color: #475569; font-size: 0.95rem;">No. All conversions happen entirely on your computer through client-side browser execution. Your data is never sent to or stored on an external server.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What is the difference between Title Case and Sentence case?</h3>
+          <p style="color: #475569; font-size: 0.95rem;">Title Case capitalizes the first character of every word, while Sentence case only capitalizes the initial letter of each distinct sentence.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p style="font-weight: 600; color: #1e3a8a;">Caps Converter</p>
+      <p style="font-size: 0.85rem; margin-top: 0.25rem;">Free online text case conversion tool.</p>
+      <p style="font-size: 0.8rem; margin-top: 0.5rem;">&copy; 2026 Caps Converter. All rights reserved.</p>
+    </footer>
+
+  </div>
+
+  <!-- Real Interactive JavaScript Logic -->
+  <script>
+    function updateCounts() {
+      const input = document.getElementById('main-input').value;
+      const charCount = input.length;
+      const wordCount = input.trim() === '' ? 0 : input.trim().split(/\s+/).length;
+      
+      document.getElementById('char-count').innerText = 'Characters: ' + charCount;
+      document.getElementById('word-count').innerText = 'Words: ' + wordCount;
+    }
+
+    function convertTo(type) {
+      const input = document.getElementById('main-input').value;
+      let output = '';
+
+      if (type === 'upper') {
+        output = input.toUpperCase();
+      } else if (type === 'lower') {
+        output = input.toLowerCase();
+      } else if (type === 'title') {
+        output = input.toLowerCase().replace(/\b\w/g, function(l) { return l.toUpperCase(); });
+      } else if (type === 'sentence') {
+        output = input.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, function(c) { return c.toUpperCase(); });
+      } else if (type === 'alternating') {
+        output = input.split('').map((char, index) => index % 2 === 0 ? char.toLowerCase() : char.toUpperCase()).join('');
+      } else if (type === 'inverse') {
+        output = input.split('').map(char => char === char.toUpperCase() ? char.toLowerCase() : char.toUpperCase()).join('');
+      }
+
+      document.getElementById('main-output').value = output;
+    }
+
+    function copyOutput() {
+      const outputArea = document.getElementById('main-output');
+      if (!outputArea.value) return;
+      
+      outputArea.select();
+      navigator.clipboard.writeText(outputArea.value).then(() => {
+        const copyBtn = document.getElementById('copy-btn');
+        const originalText = copyBtn.innerText;
+        copyBtn.innerText = 'Copied!';
+        setTimeout(() => { copyBtn.innerText = originalText; }, 2000);
+      });
+    }
+
+    function downloadTxt() {
+      const text = document.getElementById('main-output').value;
+      if (!text) return;
+      
+      const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'converted-text.txt';
+      link.click();
+    }
+
+    function clearAll() {
+      document.getElementById('main-input').value = '';
+      document.getElementById('main-output').value = '';
+      updateCounts();
+    }
+  </script>
+
+</body>
+</html>
